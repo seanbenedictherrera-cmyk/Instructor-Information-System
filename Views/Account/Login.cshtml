@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center align-items-center" style="min-height: 78vh;">
+        <div class="col-lg-9 col-xl-8">
+            <div class="card auth-split-card">
+                <div class="row g-0">
+                    <!-- Left Branding Panel (Maroon to Black Gradient) -->
+                    <div class="col-md-5 auth-brand-panel">
+                        <div>
+                            <span class="badge bg-black bg-opacity-50 text-uppercase px-3 py-2 mb-3">Admin Portal</span>
+                            <h2 class="fw-bold mb-3">Instructor Information System</h2>
+                            <p class="small opacity-75 mb-0">
+                                Centralized faculty directory, academic tracking, and administrative management.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-top border-white border-opacity-25 small opacity-75">
+                            Authorized Personnel Only
+                        </div>
+                    </div>
+
+                    <!-- Right Form Panel -->
+                    <div class="col-md-7 auth-form-panel">
+                        <h3 class="fw-bold mb-1" style="color: #121214;">Sign In</h3>
+                        <p class="text-muted small mb-4">Enter your administrator credentials to continue</p>
+
+                        @if (TempData["Success"] != null)
+                        {
+                            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                                @TempData["Success"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+
+                        @if (ViewBag.Alert != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                                @ViewBag.Alert
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+
+                        <form asp-action="Login" method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-semibold small text-uppercase text-secondary">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="admin@pcb.edu.ph" required />
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="password" class="form-label fw-semibold small text-uppercase text-secondary">Password</label>
+                                <div class="input-group input-group-lg">
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required />
+                                    <button class="btn btn-outline-secondary fs-6" type="button" onclick="togglePassword('password', this)">Show</button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-maroon btn-lg w-100 shadow-sm mb-4">
+                                Access Dashboard
+                            </button>
+                        </form>
+
+                        <div class="text-center pt-3 border-top">
+                            <span class="text-muted small">Need administrator access?</span>
+                            <a asp-action="Register" class="fw-bold small text-decoration-none ms-1" style="color: #6B141A;">Register Here</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                btn.textContent = "Hide";
+            } else {
+                input.type = "password";
+                btn.textContent = "Show";
+            }
+        }
+    </script>
+}

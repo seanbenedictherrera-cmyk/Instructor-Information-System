@@ -1,0 +1,47 @@
+@model InstructorInformationsSystem.Models.Instructor
+@{
+    ViewData["Title"] = "Instructor Details";
+}
+
+<div class="auth-container" style="max-width: 650px;">
+    <h2>Instructor Details</h2>
+
+    <div class="card p-3 mb-3">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Instructor ID:</dt>
+            <dd class="col-sm-8">@Model.InstructorID</dd>
+
+            <dt class="col-sm-4">Full Name:</dt>
+            <dd class="col-sm-8">@Model.FullName</dd>
+
+            <dt class="col-sm-4">Age:</dt>
+            <dd class="col-sm-8">@Model.Age</dd>
+
+            <dt class="col-sm-4">Gender:</dt>
+            <dd class="col-sm-8">@Model.Gender</dd>
+
+            <dt class="col-sm-4">Address:</dt>
+            <dd class="col-sm-8">@Model.Address</dd>
+
+            <dt class="col-sm-4">Designation:</dt>
+            <dd class="col-sm-8">@Model.Designation</dd>
+
+            <dt class="col-sm-4">Contact Number:</dt>
+            <dd class="col-sm-8">@Model.ContactNumber</dd>
+
+            <dt class="col-sm-4">Majorship:</dt>
+            <dd class="col-sm-8">@Model.Majorship</dd>
+
+            <dt class="col-sm-4">Bachelor Degree:</dt>
+            <dd class="col-sm-8">@Model.BachelorDegree</dd>
+
+            <dt class="col-sm-4">E-mail Address:</dt>
+            <dd class="col-sm-8">@Model.EmailAddress</dd>
+        </dl>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.InstructorID" class="btn btn-warning w-50">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary w-50">Back to Dashboard</a>
+    </div>
+</div>

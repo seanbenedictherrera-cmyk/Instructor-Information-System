@@ -1,0 +1,107 @@
+@model InstructorInformationsSystem.Models.Admin
+@{
+    ViewData["Title"] = "Admin Registration";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center align-items-center" style="min-height: 78vh;">
+        <div class="col-lg-10 col-xl-9">
+            <div class="card auth-split-card">
+                <div class="row g-0">
+                    <!-- Left Branding Panel -->
+                    <div class="col-md-4 auth-brand-panel">
+                        <div>
+                            <span class="badge bg-black bg-opacity-50 text-uppercase px-3 py-2 mb-3">New Account</span>
+                            <h3 class="fw-bold mb-3">Faculty Portal Setup</h3>
+                            <p class="small opacity-75 mb-0">
+                                Create your administrator profile to manage instructor records, designations, and credentials.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-top border-white border-opacity-25 small opacity-75">
+                            Instructor Information System
+                        </div>
+                    </div>
+
+                    <!-- Right Form Panel -->
+                    <div class="col-md-8 auth-form-panel">
+                        <h3 class="fw-bold mb-1" style="color: #121214;">Create Admin Account</h3>
+                        <p class="text-muted small mb-4">Fill in your details below to register</p>
+
+                        @if (ViewBag.Alert != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                                @ViewBag.Alert
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+
+                        <form asp-action="Register" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label asp-for="FirstName" class="form-label fw-semibold small text-uppercase text-secondary">First Name</label>
+                                    <input asp-for="FirstName" class="form-control" placeholder="Mar-Ian" required />
+                                    <span asp-validation-for="FirstName" class="text-danger small"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label asp-for="LastName" class="form-label fw-semibold small text-uppercase text-secondary">Last Name</label>
+                                    <input asp-for="LastName" class="form-control" placeholder="Dagun" required />
+                                    <span asp-validation-for="LastName" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Email" class="form-label fw-semibold small text-uppercase text-secondary">Email Address</label>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="admin@pcb.edu.ph" required />
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-sm-6">
+                                    <label asp-for="Password" class="form-label fw-semibold small text-uppercase text-secondary">Password</label>
+                                    <div class="input-group">
+                                        <input asp-for="Password" id="regPassword" type="password" class="form-control" placeholder="••••••••" required />
+                                        <button class="btn btn-outline-secondary btn-sm px-3" type="button" onclick="togglePassword('regPassword', this)">Show</button>
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger small"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label asp-for="ConfirmPassword" class="form-label fw-semibold small text-uppercase text-secondary">Confirm Password</label>
+                                    <div class="input-group">
+                                        <input asp-for="ConfirmPassword" id="regConfirmPassword" type="password" class="form-control" placeholder="••••••••" required />
+                                        <button class="btn btn-outline-secondary btn-sm px-3" type="button" onclick="togglePassword('regConfirmPassword', this)">Show</button>
+                                    </div>
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-maroon btn-lg w-100 shadow-sm mb-4">
+                                Complete Registration
+                            </button>
+                        </form>
+
+                        <div class="text-center pt-3 border-top">
+                            <span class="text-muted small">Already have an account?</span>
+                            <a asp-action="Login" class="fw-bold small text-decoration-none ms-1" style="color: #6B141A;">Sign In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                btn.textContent = "Hide";
+            } else {
+                input.type = "password";
+                btn.textContent = "Show";
+            }
+        }</script>
+}
